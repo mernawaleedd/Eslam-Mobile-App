@@ -1,56 +1,52 @@
 import { View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import api from "../../utils/api";
 import { ErrorMassege, ScrollComponent, MainLayout } from "../../components";
 import { Notifcation } from "../../components";
-import Toast from "react-native-toast-message";
-import api from "../../utils/api";
+
 const NotificationPage = () => {
-	const [data, setData] = useState([{ MessageHead:"الاشعارات", MessageBody:"افتلمنقتنقللللل  لابيعبيهسياهخب تلاريتبايه", MessageDateTime:"12.222.122"}]);
-	const [loader, setLoader] = useState(true);
-	const getNotfications = async () => {
-		try {
-			setLoader(true);
-			const data = await api.get("/notifications");
-			setData(data.data.notifications);
-		} catch (error) {
-			Toast.show({
-				type: "error",
-				text2: error.response.data.message
-					? error.response.data.message
-					: false,
-			});
-		} finally {
-			setLoader(false);
-		}
-	};
-	// useEffect(() => {
-	// 	getNotfications();
-	// }, []);
-	return (
-		<MainLayout
-			title={"التنبيهات"}
-			loading={loader}>
-			<>
-				{data.length == 0 ? (
-					<ErrorMassege err={"لا يوجد تنبيهات"} />
-				) : (
-					<ScrollComponent
-						parentContainerStyle={"min-h-[85vh]"}
-						refreshingFunction={getNotfications}
-						isLoading={loader}>
-						<View className="p-4">
-							{data.map((item, index) => (
-								<Notifcation
-									key={index}
-									data={item}
-								/>
-							))}
-						</View>
-					</ScrollComponent>
-				)}
-			</>
-		</MainLayout>
-	);
+  const [data, setData] = useState([]);
+  const [loader, setLoader] = useState(true);
+
+  const fetchNotifications = async () => {
+    setLoader(true);
+    try {
+      const response = await api.get("notify/notify-org/1");
+      setData(response.data); 
+      console.log(data,"data");
+      
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+    } finally {
+      setLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchNotifications(); 
+  }, []);
+
+  return (
+    <MainLayout title={"التنبيهات"} loading={loader}>
+      <>
+        {data.length === 0 ? (
+          <ErrorMassege err={"لا يوجد تنبيهات"} />
+        ) : (
+          <ScrollComponent
+            parentContainerStyle={"min-h-[85vh]"}
+            refreshingFunction={fetchNotifications}
+            isLoading={loader}
+          >
+            <View className="p-4">
+              {data.map((item, index) => (
+                <Notifcation key={index} data={item} />
+              ))}
+            </View>
+          </ScrollComponent>
+        )}
+      </>
+    </MainLayout>
+  );
 };
 
 export default NotificationPage;

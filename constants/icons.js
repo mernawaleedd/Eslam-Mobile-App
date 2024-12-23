@@ -47,6 +47,9 @@ import Robot from "../assets/images/robot.png";
 import Notifcations from "../assets/images/notifications.png";
 import SchoolLogo from "../assets/images/school-logo.png";
 import Graduation from "../assets/images/graduation.png";
+import Dot from "../assets/images/dot.png";
+import Check from "../assets/images/check.png";
+import False from "../assets/images/False.png";
 export default {
 	hwwc,
 	x,
@@ -97,4 +100,7 @@ export default {
 	Notifcations,
 	SchoolLogo,
 	Graduation,
+	Dot,
+	Check,
+	False,
 };

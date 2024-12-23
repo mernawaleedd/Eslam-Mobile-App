@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import styles from "../app/Styles";
 import { useRouter } from "expo-router";
 import MainButton from "./UI/MainButton";
+import { icons } from "../constants";
 const Navbar = ({ onOpenSidebar, showChatIcon = false, onNewChat }) => {
   const [isOnDropdownPage, setIsOnDropdownPage] = useState(false);
   const router = useRouter(); 
@@ -17,6 +18,14 @@ const Navbar = ({ onOpenSidebar, showChatIcon = false, onNewChat }) => {
       {/* <TouchableOpacity onPress={onOpenSidebar}>
         <Ionicons name="menu-outline" size={28} color="#2b2b2b" />
       </TouchableOpacity> */}
+      	<MainButton
+										// icon={icons.Signin}
+										iconStyles={"mr-2 mt-1"}
+										containerStyles={
+											" w-[150px] min-h-[45px] "
+										}
+										// handlePress={handleLogOut}
+										title={"تسجيل الخروج"}></MainButton>
       <View style={{ flexDirection: "row", alignItems: "center", marginLeft: "auto" }}>
         {showChatIcon && (
           <TouchableOpacity onPress={onNewChat}>
