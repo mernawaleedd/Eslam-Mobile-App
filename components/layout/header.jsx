@@ -32,7 +32,7 @@ const Header = ({ title, hasLeftComponent = false, onDrawerPress }) => {
 					{/* Rest of the component content */}
 				</View>
 			</View>
-			<View style={styles.header}>
+			{/* <View style={styles.header}>
 				<Text
 					style={styles.title}
 					className="font-tmedium">
@@ -70,7 +70,7 @@ const Header = ({ title, hasLeftComponent = false, onDrawerPress }) => {
 						/>
 					</TouchableOpacity>
 				)}
-			</View>
+			</View> */}
 		</View>
 	);
 };

@@ -9,18 +9,18 @@ export default function UserInfo() {
 
 	return (
 		<View className=" mb-5 p-4">
-			<Text className="text-right font-tregular text-xl text-[#133E54]">
+			<Text className="text-right font-tregular mb-2 text-xl text-[#133E54]">
 				مرحبا بك
 			</Text>
-			<View className="flex flex-col  mb-7">
-				<Text className="text-right  font-tbold mt-1 text-xl text-[#133E54]">
+			<View className="flex flex-col  mb-5">
+				<Text className="text-right mb-2 text-xl text-[#133E54]">
 					{user ? user?.username : ""}
 				</Text>
-				<View className="flex items-center flex-row-reverse gap-1 mt-1 ">
-					<Image
+				<View className="flex items-center flex-row-reverse gap-1 ">
+					{/* <Image
 						className="w-4 h-4"
-						source={icons.mapPin}></Image>
-					<Text className="font-tregular text-[#133E54]">
+						source={icons.mapPin}></Image> */}
+					<Text className="font-tregular text-[#64B5F6]   font-bold text-lg">
 						{user?.UserDepartmentName}
 					</Text>
 				</View>

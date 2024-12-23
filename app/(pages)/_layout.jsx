@@ -14,16 +14,23 @@ const ProtectedRoute = () => {
 			navigation.navigate("index");
 		}
 	}, [navigation, user, isLogged]);
-
 	return (
-		<MainLayout hasLeftComponent>
+		
 			<Stack>
 				<Stack.Screen
-					name="Home"
+					name="HomePage"
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="ChatScreen"
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="NotificationPage"
 					options={{ headerShown: false }}
 				/>
 			</Stack>
-		</MainLayout>
+		
 	);
 };
 

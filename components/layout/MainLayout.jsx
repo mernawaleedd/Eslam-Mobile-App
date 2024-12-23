@@ -6,6 +6,7 @@ import Toast from "react-native-toast-message";
 import { toastMessege } from "../../constants";
 import CustomMenu from "./CustomMenu";
 import { useState } from "react";
+import Navbar from "../Navebar";
 const MainLayout = ({
 	children,
 	title,
@@ -53,7 +54,7 @@ const MainLayout = ({
 					setMenu(false);
 				}}
 			/>
-			<Header
+			<Navbar
 				onDrawerPress={() => onDrawerPress()}
 				hasLeftComponent={hasLeftComponent}
 				title={title}

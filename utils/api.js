@@ -3,7 +3,8 @@ import * as SecureStore from "expo-secure-store";
 
 // Define your API base URL
 
-const API_BASE_URL = "http://192.168.1.21:5000/api";
+const API_BASE_URL = "http://192.168.1.197:5000/api";
+
 const api = axios.create({
 	baseURL: API_BASE_URL,
 });
@@ -17,6 +18,7 @@ api.interceptors.request.use(
 			}
 		} catch (error) {
 			console.log("Error getting access token:", error);
+			Promise.reject(error)
 		}
 		return config;
 	},

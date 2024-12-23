@@ -13,11 +13,8 @@ const GlobalProvider = ({ children }) => {
 	const checkAuth = async () => {
 		try {
 			const username = JSON.parse(await SecureStore.getItemAsync("username"));
-			const lastActive = JSON.parse(
-				await SecureStore.getItemAsync("lastActive")
-			);
-			const UserTypeID = JSON.parse(
-				await SecureStore.getItemAsync("UserTypeID")
+			const UserOrgID = JSON.parse(
+				await SecureStore.getItemAsync("UserOrgID")
 			);
 			const UserDepartmentID = JSON.parse(
 				await SecureStore.getItemAsync("UserDepartmentID")
@@ -29,12 +26,10 @@ const GlobalProvider = ({ children }) => {
 			if (username) {
 				setIsLogged(true);
 				setUser({
-					username: username,
-					lastActive: lastActive,
-					type: UserTypeID,
-					selectedDepartmentID: UserDepartmentID,
-					DepartmentID: UserDepartmentID,
-					UserDepartmentName: UserDepartmentName,
+					username:username,
+					UserOrgID:UserOrgID,
+					UserDepartmentID:UserDepartmentID,
+					UserDepartmentName:UserDepartmentName
 				});
 			} else {
 				setIsLogged(false);
@@ -50,16 +45,14 @@ const GlobalProvider = ({ children }) => {
 		accessToken,
 		refreshToken,
 		username,
-		lastActive,
-		UserTypeID,
+		UserOrgID,
 		UserDepartmentID,
 		UserDepartmentName
 	) => {
 		await SecureStore.setItemAsync("accessToken", accessToken);
 		await SecureStore.setItemAsync("refreshToken", refreshToken);
 		await SecureStore.setItemAsync("username", JSON.stringify(username));
-		await SecureStore.setItemAsync("lastActive", JSON.stringify(lastActive));
-		await SecureStore.setItemAsync("UserTypeID", JSON.stringify(UserTypeID));
+		await SecureStore.setItemAsync("UserOrgID", JSON.stringify(UserOrgID));
 		await SecureStore.setItemAsync(
 			"UserDepartmentName",
 			JSON.stringify(UserDepartmentName)
@@ -72,18 +65,21 @@ const GlobalProvider = ({ children }) => {
 
 	// Usage in your login function
 
-	const login = async (email, password, fcmToken) => {
+	const login = async (UserName, password, fcmToken="") => {
 		try {
+			console.log(UserName)
 			const response = await api.post(`/auth/signin`, {
-				emailOrUsername: email,
-				password,
+				UserName: UserName,
+				password:password		,
 				fcmToken: fcmToken,
 			});
+			
+			console.log(response,"11111")
 			const { accessToken, refreshToken, user, success } = response.data;
 			const {
 				username,
-				lastActive,
-				UserTypeID,
+				email,
+				UserOrgID,
 				UserDepartmentID,
 				UserDepartmentName,
 			} = user;
@@ -92,21 +88,20 @@ const GlobalProvider = ({ children }) => {
 				accessToken,
 				refreshToken,
 				username,
-				lastActive,
-				UserTypeID,
+				UserOrgID,
 				UserDepartmentID,
 				UserDepartmentName
 			);
 
 			setUser({
-				username: user?.username,
-				lastActive: user?.lastActive,
-				type: user?.UserTypeID,
-				DepartmentID: user?.UserDepartmentID,
-				UserDepartmentName: user?.UserDepartmentName,
+				username:username,
+				UserOrgID:UserOrgID,
+				UserDepartmentID:UserDepartmentID,
+				UserDepartmentName:UserDepartmentName
 			});
 			setIsLogged(true);
 		} catch (error) {
+			console.log(error,'error')
 			return Promise.reject(error);
 		}
 	};
@@ -162,12 +157,11 @@ const GlobalProvider = ({ children }) => {
 
 	const logOut = async () => {
 		try {
-			await api.get("/auth/signout");
+			// await api.get("/auth/signout");
 			await SecureStore.deleteItemAsync("accessToken");
 			await SecureStore.deleteItemAsync("refreshToken");
 			await SecureStore.deleteItemAsync("username");
-			await SecureStore.deleteItemAsync("lastActive");
-			await SecureStore.deleteItemAsync("UserTypeID");
+			await SecureStore.deleteItemAsync("UserOrgID");
 			await SecureStore.deleteItemAsync("UserDepartmentID");
 			setIsLogged(false);
 			setUser(null);
@@ -176,8 +170,7 @@ const GlobalProvider = ({ children }) => {
 				await SecureStore.deleteItemAsync("accessToken");
 				await SecureStore.deleteItemAsync("refreshToken");
 				await SecureStore.deleteItemAsync("username");
-				await SecureStore.deleteItemAsync("lastActive");
-				await SecureStore.deleteItemAsync("UserTypeID");
+				await SecureStore.deleteItemAsync("UserOrgID");
 				await SecureStore.deleteItemAsync("UserDepartmentID");
 				setIsLogged(false);
 				setUser(null);

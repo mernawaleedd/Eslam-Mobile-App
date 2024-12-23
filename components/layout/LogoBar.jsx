@@ -8,18 +8,19 @@ const LogoBar = () => {
 			<View style={styles.header}>
 				<View style={styles.headerLeftContainer}>
 					<Image
-						source={icons.hwwc}
+						source={icons.Graduation}
 						style={styles.LeftImage}
 						resizeMode="contain"
 						className="w-6 h-6"
 					/>
 				</View>
 				<View style={styles.headerRightContainer}>
-					<Image
-						source={require("../../assets/images/logoright.jpg")}
-						style={styles.RightImage}
+				{/* <Image
+						source={icons.Graduation}
+						style={styles.LeftImage}
 						resizeMode="contain"
-					/>
+						className="w-6 h-6"
+					/> */}
 				</View>
 			</View>
 			{/* Rest of the component content */}
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 12,
 		backgroundColor: "#ffffff",
 		elevation: 4,
-		height: 58,
+		height: 40,
 	},
 	headerLeftContainer: {
 		flex: 1,

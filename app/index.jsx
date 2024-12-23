@@ -4,10 +4,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { icons } from "../constants";
-import { MainButton, FormField, LogoBar, Loader } from "../components";
+import { MainButton, FormField, LogoBar, Loader, Header } from "../components";
 import { useGlobalContext } from "../context/GlobalProvider";
 import { I18nManager } from "react-native";
-
+import * as Yup from 'yup';
 const Welcome = () => {
 	const { isLogged, user, loading, checkAuth, login } = useGlobalContext();
 	const [isSubmitting, setSubmitting] = useState(false);
@@ -15,13 +15,13 @@ const Welcome = () => {
 	I18nManager.allowRTL(false);
 
 	const [form, setForm] = useState({
-		username: "",
+		UserName: "",
 		password: "",
 	});
 	const router = useRouter();
 
 	const submit = async () => {
-		if (form.username === "" || form.password === "") {
+		if (form.UserName === "" || form.password === "") {
 			Toast.show({
 				type: "error",
 				text1: "خطأ",
@@ -39,9 +39,16 @@ const Welcome = () => {
 		}
 
 		try {
+			console.log(form)
 			setSubmitting(true);
 
-			const result = await login(form.username, form.password); //fcmToken
+			try {
+				const result = await login(form.UserName, form.password); //fcmToken
+			} catch (error) {
+				console.log(error,'erorr')
+			}
+
+			
 
 			Toast.show({
 				type: "success",
@@ -58,19 +65,19 @@ const Welcome = () => {
 			});
 		} catch (error) {
 			console.log("error", error);
-			Toast.show({
-				type: "error",
-				text1: "فشلت العملية",
-				text2: error?.response.data.message,
-				autoHide: true,
-				visibilityTime: 3000,
-				text1Style: {
-					textAlign: "right",
-				},
-				text2Style: {
-					textAlign: "right",
-				},
-			});
+			// Toast.show({
+			// 	type: "error",
+			// 	text1: "فشلت العملية",
+			// 	text2: error?.response.data.message,
+			// 	autoHide: true,
+			// 	visibilityTime: 3000,
+			// 	text1Style: {
+			// 		textAlign: "right",
+			// 	},
+			// 	text2Style: {
+			// 		textAlign: "right",
+			// 	},
+			// });
 		} finally {
 			setSubmitting(false);
 		}
@@ -82,10 +89,19 @@ const Welcome = () => {
 
 	useEffect(() => {
 		if (isLogged && user) {
-			router.replace("/Home");
+		  router.navigate("/HomePage");
 		}
-	}, [isLogged, user]);
-
+	  }, [isLogged, user]);
+ // Validation Schema with Regex for Email
+ const validationSchema = Yup.object({
+    UserName: Yup.string()
+      .matches(
+        /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+        'Invalid email address'
+      )
+      .required('Email is required'),
+	  password: Yup.string().required('Password is required'),
+  });
 	return (
 		<SafeAreaView className="bg-white h-full">
 			<ScrollView>
@@ -101,15 +117,15 @@ const Welcome = () => {
 							<FormField
 								inputStyle={"p-4"}
 								title="اسم المستخدم"
-								value={form.username}
-								handleChangeText={(e) => setForm({ ...form, username: e })}
+								value={form.UserName}
+								handleChangeText={(e) => setForm({ ...form, UserName: e })}
 								otherStyles="mt-7"
 								keyboardType="email-address"
 								icon={icons.User}
 								placeholder="اسم المستخدم"
-								inputIconUser={form.username && icons.deleteIcon}
+								inputIconUser={form.UserName && icons.deleteIcon}
 								handlePress={() =>
-									setForm({ ...form, username: "", password: "" })
+									setForm({ ...form, UserName: "", password: "" })
 								}
 							/>
 							<FormField
@@ -125,7 +141,7 @@ const Welcome = () => {
 								title="تسجيل الدخول"
 								handlePress={submit}
 								containerStyles="mt-14"
-								isLoading={isSubmitting}
+								
 								icon={icons.Signin}
 							/>
 						</View>

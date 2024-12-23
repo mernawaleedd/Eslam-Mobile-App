@@ -43,6 +43,10 @@ import legendIcon from "../assets/images/legendIcon.png";
 import x from "../assets/images/X.png";
 import hwwc from "../assets/images/hwwc.jpg";
 import DamiettaLogo from "../assets/images/DamiettaLogo.png";
+import Robot from "../assets/images/robot.png";
+import Notifcations from "../assets/images/notifications.png";
+import SchoolLogo from "../assets/images/school-logo.png";
+import Graduation from "../assets/images/graduation.png";
 export default {
 	hwwc,
 	x,
@@ -89,4 +93,8 @@ export default {
 	warning,
 	DamiettaLogo,
 	deleteIcon,
+	Robot,
+	Notifcations,
+	SchoolLogo,
+	Graduation,
 };

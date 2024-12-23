@@ -17,7 +17,7 @@ const MainButton = ({
 			onPress={handlePress}
 			activeOpacity={0.7}
 			className={`${
-				alternative ? " border border-primary " : "bg-primary"
+				alternative ? " border border-primary " : "bg-[#d9d9d9]"
 			}  rounded-lg min-h-[62px] flex flex-row justify-center w-full items-center ${containerStyles} ${
 				isLoading ? "opacity-50" : ""
 			}`}
@@ -32,7 +32,7 @@ const MainButton = ({
 			)}
 			<Text
 				className={`${
-					alternative ? "text-primary" : "text-white"
+					alternative ? "text-primary" : "text-[#2B2B2B]"
 				}  text-lg font-tmedium  ${textStyles} `}>
 				{title}
 			</Text>
