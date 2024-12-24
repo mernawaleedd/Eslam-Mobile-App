@@ -89,7 +89,7 @@ const Welcome = () => {
 
 	useEffect(() => {
 		if (isLogged && user) {
-		  router.navigate("/HomePage");
+		  router.replace("/HomePage");
 		}
 	  }, [isLogged, user]);
  // Validation Schema with Regex for Email

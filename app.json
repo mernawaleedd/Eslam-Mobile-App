@@ -1,28 +1,28 @@
 {
 	"expo": {
-		"name": "hwwc",
-		"slug": "hwwc",
+		"name": "KKC",
+		"slug": "KKC",
 		"version": "1.0.0",
 		"newArchEnabled": true,
 		"orientation": "portrait",
-		"icon": "./assets/images/icon.png",
+		"icon": "./assets/images/icon.jpg",
 		"scheme": "waterCompany",
 		"userInterfaceStyle": "light",
 
 		"splash": {
-			"image": "./assets/images/hwwc.jpg",
+			"image": "./assets/images/icon.jpg",
 			"resizeMode": "contain",
 			"padding": 20
 		},
-		"assetBundlePatterns": ["assets/images/*", "!assets/images/hwwc.jpg"],
+		"assetBundlePatterns": ["assets/images/*", "!assets/images/icon.jpg"],
 		"ios": {
 			"supportsTablet": true
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/images/hwwc.jpg"
+				"foregroundImage": "./assets/images/icon.jpg"
 			},
-			"package": "com.hwwc"
+			"package": "com.kks"
 		},
 		"web": {
 			"bundler": "metro",

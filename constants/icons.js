@@ -50,8 +50,10 @@ import Graduation from "../assets/images/graduation.png";
 import Dot from "../assets/images/dot.png";
 import Check from "../assets/images/check.png";
 import False from "../assets/images/False.png";
+import Kks from "../assets/images/icon.jpg";
 export default {
 	hwwc,
+	Kks,
 	x,
 	legendIcon,
 	ClipboardText,
