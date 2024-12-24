@@ -3,23 +3,14 @@ import { View, Text, Image } from "react-native";
 import { icons } from "../../constants";
 import { formatDate } from "../../utils/dateFormater";
 const Notify = ({ data }) => {
-	const { MessageHead, MessageBody, MessageDateTime, Priority, DepartmentID,Title } =
+	const { Head, Body, InsertTime,InsertUser, TskID,Status,NotificationID } =
 		data;
-	const flagIcon =
-		Priority === 1
-			? icons.Check
-			: Priority === 2
-			? icons.False
-			: Priority == 3
-			? icons.blueFlag
-			: icons.grayFlag;
-
-	const date = formatDate(new Date(MessageDateTime), true);
+	const date = formatDate(new Date(InsertTime), true);
 	return (
-		<View className={`w-full bg-[#F6F6F6] p-2 mb-4 rounded-lg`}>
-			<View className="flex flex-row-reverse justify-between mb-2  w-full">
-				<View className="flex-row">
-				<Text className="font-tbold  text-base">{MessageHead}</Text>
+		<View className={`w-full bg-[#d9d9d9] p-2 mb-4 rounded-lg`}>
+			<View className="flex flex-row-reverse justify-between mb-2 w-full">
+				<View className="flex-row p-2">
+				<Text className="font-tbold  text-base">{Head}</Text>
 			<Image
 					source={icons.Dot}
 					resizeMode="contain"
@@ -30,7 +21,7 @@ const Notify = ({ data }) => {
 				<Image
 					source={icons.Check}
 					resizeMode="contain"
-					className="w-4 h-4"
+					className="w-5 m-3"
 				/>
 			</View>
 			{/* <View className="w-full ">
@@ -39,15 +30,15 @@ const Notify = ({ data }) => {
 				</Text>
 			</View> */}
 			<View>
-				<Text className=" font-tregular  mb-2 pr-5 text-lg">{Title}</Text>
+				<Text className=" font-tregular   mb-2 px-3 text-lg">{InsertUser}</Text>
 			</View>
 			<View>
-				<Text className=" font-tregular text-base text-[#7C7878] pr-5">{MessageBody}</Text>
+				<Text className=" font-tregular text-base text-[#7C7878] px-3">{Body}</Text>
 			</View>
 
-			{/* <View>
-				<Text className=" font-light mt-2 text-xs mb-2">{`${date[1]}       ${date[0]} `}</Text>
-			</View> */}
+			<View>
+				<Text className=" font-light mt-2 text-xs mb-2 px-3">{`${date[1]}       ${date[0]} `}</Text>
+			</View>
 		</View>
 	);
 };

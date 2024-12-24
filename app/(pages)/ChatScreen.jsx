@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import ChatArea from "../../components/ChatArea";
 
-const Chatbot = ()=>{
+const ChatScreen = ()=>{
     return(
         <View>
              <ChatArea/>
@@ -9,4 +9,4 @@ const Chatbot = ()=>{
     )
 };
 
-export default Chatbot;
+export default ChatScreen;

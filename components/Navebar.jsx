@@ -19,10 +19,10 @@ const Navbar = ({ onOpenSidebar, showChatIcon = false, onNewChat }) => {
         <Ionicons name="menu-outline" size={28} color="#2b2b2b" />
       </TouchableOpacity> */}
       	<MainButton
-										// icon={icons.Signin}
+										icon={icons.Signin}
 										iconStyles={"mr-2 mt-1"}
 										containerStyles={
-											" w-[150px] min-h-[45px] "
+											" w-[170px] min-h-[45px]"
 										}
 										// handlePress={handleLogOut}
 										title={"تسجيل الخروج"}></MainButton>
