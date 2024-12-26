@@ -69,6 +69,7 @@ export default function ChatPage() {
         <Navbar
           onOpenSidebar={() => setIsSidebarOpen(true)}
           onNewChat={clearMessages}
+          showChatIcon
         />
         {isSidebarOpen && (
           <Sidebar

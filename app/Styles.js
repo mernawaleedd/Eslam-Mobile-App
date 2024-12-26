@@ -73,30 +73,43 @@ const styles = StyleSheet.create({
   messageContainer: {
     flexDirection: "row",
     marginBottom: 10,
+    overflow:"hidden",
   },
   userMessage: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
-    color:'#ffffff'
+    color:'#ffffff',
   },
   chatGPTMessage: {
     justifyContent: "flex-start",
     alignItems: "flex-start",
   },
+  messageContainer: {
+    marginVertical: 5,
+    paddingHorizontal: 10,
+    alignItems: "center",
+  },
   iconContainer: {
-    marginRight: 10,
+    marginHorizontal: 5,
     justifyContent: "center",
     alignItems: "center",
   },
-  messageText: {
+  messageBubble: {
     maxWidth: "80%",
     padding: 10,
     borderRadius: 20,
-    backgroundColor: "#F0F0F0",
   },
   userMessageText: {
-    backgroundColor: "#2579A7",
+    fontSize: 16,
     color: "#fff",
+    borderRadius: 20,
+    padding: 10,
+  },
+  botMessageText: {
+    fontSize: 16,
+    color: "#000",
+    borderRadius: 20,
+    padding: 10,
   },
   inputContainer: {
     flexDirection: "row",
@@ -119,7 +132,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   sendButton: {
-    backgroundColor: "#2579A7",
+    backgroundColor: "#d9d9d9",
     padding: 16,
     borderRadius: 50,
     alignItems: "center",

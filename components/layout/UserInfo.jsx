@@ -20,13 +20,13 @@ export default function UserInfo() {
 					{/* <Image
 						className="w-4 h-4"
 						source={icons.mapPin}></Image> */}
-					<Text className="font-tregular text-[#64B5F6]   font-bold text-lg">
+					<Text className="font-tregular text-[#64B5F6] font-bold text-lg">
 						{user?.UserDepartmentName}
 					</Text>
 				</View>
 			</View>
 
-			<View className="  flex flex-row-reverse items-center ">
+			{/* <View className="  flex flex-row-reverse items-center ">
 				<Text className="text-lg font-tregular  text-[#133E54] flex items-center justify-center  ">
 					اخر ظهور : {user ? lastSeen[0] : ""}
 				</Text>
@@ -41,7 +41,7 @@ export default function UserInfo() {
 						? ` 0${lastSeen[1]?.split(":")[1]}`
 						: lastSeen[1]?.split(":")[1] || ""}
 				</Text>
-			</View>
+			</View> */}
 		</View>
 	);
 }

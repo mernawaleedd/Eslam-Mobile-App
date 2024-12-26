@@ -1,12 +1,16 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import { icons } from "../../constants";
 import { formatDate } from "../../utils/dateFormater";
-const Notify = ({ data }) => {
+import { useRoute } from "@react-navigation/native";
+const Notify = ({ data, handlePress }) => {
 	const { Head, Body, InsertTime,InsertUser, TskID,Status,NotificationID } =
 		data;
+		const router=useRoute();
 	const date = formatDate(new Date(InsertTime), true);
+
 	return (
+		<Pressable onPress={handlePress}>
 		<View className={`w-full bg-[#d9d9d9] p-2 mb-4 rounded-lg`}>
 			<View className="flex flex-row-reverse justify-between mb-2 w-full">
 				<View className="flex-row p-2">
@@ -40,6 +44,7 @@ const Notify = ({ data }) => {
 				<Text className=" font-light mt-2 text-xs mb-2 px-3">{`${date[1]}       ${date[0]} `}</Text>
 			</View>
 		</View>
+		</Pressable>
 	);
 };
 

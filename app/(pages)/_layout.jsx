@@ -29,6 +29,10 @@ const ProtectedRoute = () => {
 					name="NotificationPage"
 					options={{ headerShown: false }}
 				/>
+					<Stack.Screen
+					name="NotificationDetailesPage"
+					options={{ headerShown: false }}
+				/>
 			</Stack>
 		
 	);

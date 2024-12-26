@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect,Image } from "react";
 import Datatable from "./DataTable";
+import { icons } from "../constants";
 import { 
   View, 
   TextInput, 
@@ -307,8 +308,12 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
     getData()
   }, [])
   
-
   const renderMessage = ({ item }) => {
+    const userMessageStyles = {
+      backgroundColor: item.isUser ? "#686D76" : "#F0F0F0", 
+      color: item.isUser ? "#fff" : "#000",
+    };
+  
     return (
       <View>
         {item.isUser ? (
@@ -319,34 +324,21 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
             ]}
           >
             <View style={styles.iconContainer}>
-              <Ionicons name="person-circle-outline" size={24} color="#2579A7" />
+              <Ionicons name="person-circle-outline" size={24} color="#686D76" />
             </View>
-            <Text
+            <View
               style={[
-                styles.messageText,
-                { color: "#FFFFFF",backgroundColor:"#2579A7" } 
+                styles.messageBubble,
+                { backgroundColor: userMessageStyles.backgroundColor }
               ]}
             >
-              <Markdown style={{ body: { fontSize: 16, color: "#FFFFFF" } }}>
+              <Text style={{ color: userMessageStyles.color, fontSize: 16 }}>
                 {item.text}
-              </Markdown>
-            </Text>
+              </Text>
+            </View>
             <TouchableOpacity onPress={() => handleTextCopy(item.text)}>
-              <Ionicons name="copy" size={20} color="#2579A7" style={{ marginLeft: 10 }} />
+              <Ionicons name="copy" size={20} color="#686D76" style={{ marginLeft: 10 }} />
             </TouchableOpacity>
-          </View>
-        ) : item.text === "Loading..." ? (
-          <View style={[styles.messageContainer, { alignSelf: "flex-start", flexDirection: "row" }]}>
-            <MaterialIcons name="smart-toy" size={24} color="#2579A7" />
-            <ActivityIndicator size="small" color="#2579A7" />
-          </View>
-        ) : item.role === "db" ? (
-          <View>
-            <Datatable rows = {item.rows}/>
-          </View>
-        ) : item.role === "doc" ? (
-          <View style={styles.iconContainer}>
-            <Ionicons name="document-text" size={24} color="#2579A7" />
           </View>
         ) : (
           <View
@@ -355,19 +347,19 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
               { alignSelf: "flex-start", flexDirection: "row" }
             ]}
           >
-            <MaterialIcons name="smart-toy" size={24} color="#2579A7" />
-            <Text
+            <MaterialIcons name="smart-toy" size={24} color="#686D76" />
+            <View
               style={[
-                styles.messageText,
-                { color: "#FFFFFF" }
+                styles.messageBubble,
+                { backgroundColor: userMessageStyles.backgroundColor }
               ]}
             >
-              <Markdown style={{ body: { fontSize: 16, color: "#000" } }}>
+              <Text style={{ color: userMessageStyles.color, fontSize: 16 }}>
                 {item.text}
-              </Markdown>
-            </Text>
+              </Text>
+            </View>
             <TouchableOpacity onPress={() => handleTextCopy(item.text)}>
-              <Ionicons name="copy" size={20} color="#2579A7" style={{ marginLeft: 10 }} />
+              <Ionicons name="copy" size={20} color="#686D76" style={{ marginLeft: 10 }} />
             </TouchableOpacity>
           </View>
         )}
@@ -387,12 +379,12 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
       />    
       <View style={styles.inputContainer}>
         <View style={styles.inputWithMic}>
-          <TouchableOpacity onPress={openCamera} style={styles.iconContainer}>
+          {/* <TouchableOpacity onPress={openCamera} style={styles.iconContainer}>
             <MaterialIcons name="photo-camera" size={24} color="#2579A7" />
           </TouchableOpacity>
           <TouchableOpacity onPress={openDocumentPicker} style={styles.iconContainer}>
             <MaterialIcons name="attach-file" size={24} color="#2579A7" />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TextInput
             style={[
               styles.input,
@@ -424,7 +416,7 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
             styles.sendButton,
             pressed && { opacity: 0.8, scale: 1.5 },
             isRecording && {
-              shadowColor: "#ffffff",
+              shadowColor: "#2b2b2b",
               shadowOffset: { width: 0, height: 4 },
               shadowOpacity: 0.5,
               shadowRadius: 5,
@@ -436,7 +428,7 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
             <Ionicons
               name={input ? "send" : isRecording ? "mic" : "mic-outline"}
               size={20}
-              color={input ? "#fff" : isRecording ? "#C6E7FF" : "#fff"}
+              color={input ? "#686D76" : isRecording ? "#686D76" : "#2b2b2b"}
             />
           </Animated.View>
         </Pressable>

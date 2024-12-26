@@ -29,9 +29,15 @@ const NotificationPage = () => {
   }, []);
 
   const handleNotificationClick = () => {
-    router.navigate(`/NotificationDetailesPage`);
+      console.log(data[0].TskID);
+      
+        router.navigate({
+          pathname: "NotificationDetailesPage",
+          params: {
+            id: data[0].TskID,
+          },
+  });
   };
-
   return (
     <MainLayout title={"التنبيهات"} loading={loader}>
       <>
@@ -48,9 +54,7 @@ const NotificationPage = () => {
                   <Notifcation
                     key={index}
                     data={item}
-                    onPress={() => handleNotificationClick(
-                      0
-                    )}
+                    handlePress={handleNotificationClick}
                   />
                 ))}
             </View>
