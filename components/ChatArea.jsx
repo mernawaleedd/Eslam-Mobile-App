@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect,Image } from "react";
-import Slider from "./UI/Slider";
 import Datatable from "./DataTable";
 import { icons } from "../constants";
 import { 
@@ -21,7 +20,7 @@ import styles from "../app/Styles";
 import { Audio } from 'expo-av';
 import {transcripeUrl, streamBaseUrl, sqlUrl} from "../config"
 import api from "../api";
-
+import Slider from "./UI/Slider";
 import { useGlobalContext } from "../context/GlobalProvider";
 
 const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocumentPicker, id, ItemType }) => {
@@ -29,7 +28,7 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
   const [recording, setRecording] = useState(null);
   const [isRecording, setIsRecording] = useState(false); 
   const scaleAnim = useRef(new Animated.Value(1)).current;
-  const [loading, setLoading] = useState(false); // State for loader visibility
+  const [loading, setLoading] = useState(false); 
   const [data, setData] = useState(false)
   const [sql, setSql] = useState(false)
   let type = "doc"
@@ -71,6 +70,7 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
       const result = await response.json();
       setInput(result.transcription)
       console.log('Server response:', result.transcription);
+  
     } catch (error) {
       console.log('Error uploading audio:', error);
     }
@@ -234,7 +234,9 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
       setLoading(false);
     }
   };
-
+  const handleQuestionSelect = (question) => {
+    setInput(question);
+  };
   const handleTextCopy = (text) => {
     Clipboard.setString(text);
     alert("Text copied to clipboard!");
@@ -377,7 +379,8 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
         contentContainerStyle={styles.chatContainer}
         ref={flatListRef}
         onContentSizeChange={() => flatListRef.current?.scrollToEnd({ animated: true })}
-      />    
+      /> 
+      <View><Slider onSelect={handleQuestionSelect}/></View>   
       <View style={styles.inputContainer}>
         <View style={styles.inputWithMic}>
           {/* <TouchableOpacity onPress={openCamera} style={styles.iconContainer}>
@@ -399,7 +402,7 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
             numberOfLines={4}
           />
         </View>
-  
+    
         <Pressable
           onPressIn={() => {
             if(loading){
@@ -433,7 +436,6 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
             />
           </Animated.View>
         </Pressable>
-        
       </View>
     </View>
   );
