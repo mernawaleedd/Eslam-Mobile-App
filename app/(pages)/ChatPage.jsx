@@ -8,7 +8,7 @@ import * as DocumentPicker from "expo-document-picker";
 import { useRouter } from "expo-router";
 import { useLocalSearchParams } from 'expo-router';
 import GlobalProvider from "../../context/GlobalProvider";
-
+import Slider from '../../components/UI/Slider';
 export default function ChatPage() {
   const [file, setFile] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

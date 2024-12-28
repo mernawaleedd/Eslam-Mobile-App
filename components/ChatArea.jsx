@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect,Image } from "react";
+import Slider from "./UI/Slider";
 import Datatable from "./DataTable";
 import { icons } from "../constants";
 import { 
