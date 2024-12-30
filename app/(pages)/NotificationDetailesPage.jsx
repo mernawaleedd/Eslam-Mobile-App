@@ -14,7 +14,7 @@ const NotificationsPage = () => {
     const [loader, setLoader] = useState(true);
     const { getFunction } = useGlobalContext()
     useEffect(() => {
-        console.log(id);
+        console.log(id, " mernaaaaaaaaaaaaaaaaaaaaa");
         if (id){
             const fetchNotifications = async () => {
                 setLoader(true);

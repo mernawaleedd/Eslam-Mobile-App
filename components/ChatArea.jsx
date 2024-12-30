@@ -136,7 +136,7 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
           const response = await fetch(`${sqlUrl}`, {
             method: "POST",
             body: JSON.stringify({
-              "question": input,
+              "user_massage": input,
               "table_names":[`${data.ItemName}`],
               "appName":"BILLS"
             }),
@@ -177,10 +177,7 @@ const ChatArea = ({ messages, setMessages, file, setFile, openCamera, openDocume
       const eventSource = new EventSource(url, {
         method: 'POST',
         body: JSON.stringify({
-          question: input,
-          context: context,
-          reqType:type,
-          table:context2
+          "user_massage": input,
         }),
         headers: {
           'Content-Type': 'application/json',

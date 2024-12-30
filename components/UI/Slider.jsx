@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, FlatList, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const questions = [
-  'What is the number of notifications?',
-  'What is the number of users?',
-  'What is the number of notifications?',
-  'What is the number of users?',
+  'إجمالي الخصوم وحقوق الشركاء؟',
+  'اجمالي المصروفات؟',
+  'المصروفات الإدارية والعمومية؟',
+  'إجمالي الإيرادات؟',
 ];
 
 const Slider = ({ onSelect }) => {
@@ -19,7 +19,7 @@ const Slider = ({ onSelect }) => {
       renderItem={({ item }) => (
         <TouchableOpacity
           style={styles.questionContainer}
-          onPress={() => onSelect(item)} 
+          onPress={() => onSelect(item)}
         >
           <Text style={styles.question}>{item}</Text>
         </TouchableOpacity>
@@ -30,14 +30,15 @@ const Slider = ({ onSelect }) => {
 
 const styles = StyleSheet.create({
   questionContainer: {
-    width: Dimensions.get('window').width * 0.8,
+    alignSelf: 'center', // Centers the container horizontally
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20, // Adds spacing around the text
     backgroundColor: '#d9d9d9',
     marginHorizontal: 10,
     borderRadius: 8,
-    marginBottom:10,
+    marginBottom: 10,
   },
   question: {
     fontSize: 16,

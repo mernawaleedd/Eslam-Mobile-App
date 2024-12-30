@@ -8,7 +8,6 @@ const Notify = ({ data, handlePress }) => {
 		data;
 		const router=useRoute();
 	const date = formatDate(new Date(InsertTime), true);
-
 	return (
 		<Pressable onPress={handlePress}>
 		<View className={`w-full bg-[#d9d9d9] p-2 mb-4 rounded-lg`}>
@@ -41,7 +40,7 @@ const Notify = ({ data, handlePress }) => {
 			</View>
 
 			<View>
-				<Text className=" font-light mt-2 text-xs mb-2 px-3">{`${date[1]}       ${date[0]} `}</Text>
+				<Text className=" font-light mt-2 text-xs mb-2 px-3">{InsertTime}</Text>
 			</View>
 		</View>
 		</Pressable>

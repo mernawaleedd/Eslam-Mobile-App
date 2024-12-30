@@ -29,7 +29,7 @@ const NotificationPage = () => {
   }, []);
 
   const handleNotificationClick = () => {
-      console.log(data[0].TskID);
+      console.log(data[0].TskID, "ateffffff");
       
         router.navigate({
           pathname: "NotificationDetailesPage",
