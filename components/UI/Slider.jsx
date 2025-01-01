@@ -30,11 +30,11 @@ const Slider = ({ onSelect }) => {
 
 const styles = StyleSheet.create({
   questionContainer: {
-    alignSelf: 'center', // Centers the container horizontally
+    alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 10,
-    paddingHorizontal: 20, // Adds spacing around the text
+    paddingHorizontal: 20,
     backgroundColor: '#d9d9d9',
     marginHorizontal: 10,
     borderRadius: 8,
